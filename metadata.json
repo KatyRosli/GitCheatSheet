@@ -1,0 +1,5 @@
+{
+  "name": "Git Cheat Sheet",
+  "description": "A searchable Git command reference: copy-ready snippets, flags and cautions, grouped into Actions, Inspect, Utilities and Undo & Recovery.",
+  "requestFramePermissions": []
+}
