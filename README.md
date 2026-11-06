@@ -2,6 +2,9 @@
 
 A searchable Git command reference with copy-ready snippets, flags and cautions, grouped into **Actions**, **Inspect**, **Utilities** and **Undo & Recovery**. Visit website here: https://git-cheat-sheet-two.vercel.app/ .
 
+<img width="1200" height="630" alt="og-image" src="https://github.com/user-attachments/assets/4bbf0758-f4a8-4379-9e12-7d2064d010f2" />
+
+
 Built with React 19, TypeScript (strict), Vite and Tailwind CSS v4.
 
 ## Getting started
