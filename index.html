@@ -14,6 +14,14 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="theme-color" content="#111322" />
 
+    <!-- Apply the saved light theme before first paint, so light-theme visitors don't see a dark flash.
+         Keep the key and class in sync with src/hooks/useTheme.ts. -->
+    <script>
+      try {
+        if (localStorage.getItem('codex_theme') === 'light') document.documentElement.classList.add('light');
+      } catch (e) {}
+    </script>
+
     <!-- Open Graph: link previews in WhatsApp, Slack, LinkedIn, Facebook, Discord… -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Git Cheat Sheet" />
@@ -56,15 +64,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
   </head>
   <body class="antialiased">
-    <!-- Full content for crawlers and AI agents that don't run JavaScript (filled at build time
-         by build/seo.ts). React replaces it on load. -->
-    <div id="root">
-      <main>
-        <h1>Git Cheat Sheet</h1>
-        <p>Dedicated to making developers' lives easier: all Git commands in one place.</p>
-        <!--prerendered-commands-->
-      </main>
-    </div>
+    <!-- The fully rendered app is injected here at build time (scripts/prerender.js). -->
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,46 +1,17 @@
 /**
- * Build-time SEO for a client-rendered app.
+ * Build-time SEO.
  *
  * - Fills every %SITE_URL% in index.html (link previews and structured data need absolute URLs).
- * - Prerenders all commands as plain HTML inside #root, so search engines and AI agents that
- *   don't run JavaScript still see the full content. React replaces it on load.
- * - Emits robots.txt, sitemap.xml and llms.txt from the same command data, so they never drift.
+ * - Emits robots.txt, sitemap.xml and llms.txt from the command data, so they never drift.
+ *
+ * The page content itself is prerendered by scripts/prerender.js.
  */
 import type { Plugin } from 'vite';
 import { CATEGORY_LABELS } from '../src/config/commandFilters.ts';
 import { GIT_COMMANDS } from '../src/data/commands.ts';
-import type { CommandCategory, GitCommand } from '../src/types/command.ts';
-
-const PRERENDER_MARKER = '<!--prerendered-commands-->';
-
-const escapeHtml = (text: string): string =>
-  text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+import type { CommandCategory } from '../src/types/command.ts';
 
 const CATEGORY_ORDER = Object.keys(CATEGORY_LABELS) as CommandCategory[];
-
-const commandsIn = (category: CommandCategory): GitCommand[] =>
-  GIT_COMMANDS.filter((command) => command.category === category);
-
-function prerenderCommands(): string {
-  return CATEGORY_ORDER.map((category) => {
-    const items = commandsIn(category)
-      .map(
-        (command) => `
-        <article id="command-${command.id}">
-          <h3>${escapeHtml(command.command)}: ${escapeHtml(command.title)}</h3>
-          <p>${escapeHtml(command.summary)}</p>
-          <ul>${command.snippets
-            .map((s) => `<li><code>${escapeHtml(s.command)}</code> ${escapeHtml(s.description)}</li>`)
-            .join('')}</ul>${command.caution ? `\n          <p><strong>Caution:</strong> ${escapeHtml(command.caution.details)}</p>` : ''}
-        </article>`
-      )
-      .join('');
-    return `
-      <section>
-        <h2>${escapeHtml(CATEGORY_LABELS[category])}</h2>${items}
-      </section>`;
-  }).join('');
-}
 
 function robotsTxt(siteUrl: string): string {
   return `# Allow all search engines and AI crawlers to index the cheat sheet.
@@ -67,7 +38,7 @@ function sitemapXml(siteUrl: string): string {
 
 function llmsTxt(siteUrl: string): string {
   const sections = CATEGORY_ORDER.map((category) => {
-    const lines = commandsIn(category).map((c) => `- \`${c.command}\`: ${c.summary}`);
+    const lines = GIT_COMMANDS.filter((c) => c.category === category).map((c) => `- \`${c.command}\`: ${c.summary}`);
     return `## ${CATEGORY_LABELS[category]}\n\n${lines.join('\n')}`;
   });
   return `# Git Cheat Sheet
@@ -86,14 +57,11 @@ export function seo({ siteUrl }: { siteUrl: string }): Plugin {
   return {
     name: 'seo',
 
-    transformIndexHtml(html) {
-      if (!html.includes(PRERENDER_MARKER)) {
-        this.warn?.(`index.html is missing ${PRERENDER_MARKER}; commands were not prerendered.`);
-      }
-      return html.replaceAll('%SITE_URL%', siteUrl).replace(PRERENDER_MARKER, prerenderCommands());
-    },
+    transformIndexHtml: (html) => html.replaceAll('%SITE_URL%', siteUrl),
 
     generateBundle() {
+      // Only for the client build; the SSR build (dist-ssr/) is temporary.
+      if (this.environment?.config.consumer === 'server') return;
       this.emitFile({ type: 'asset', fileName: 'robots.txt', source: robotsTxt(siteUrl) });
       this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: sitemapXml(siteUrl) });
       this.emitFile({ type: 'asset', fileName: 'llms.txt', source: llmsTxt(siteUrl) });

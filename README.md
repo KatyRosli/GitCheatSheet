@@ -4,7 +4,6 @@ A searchable Git command reference with copy-ready snippets, flags and cautions,
 
 <img width="1200" height="630" alt="og-image" src="https://github.com/user-attachments/assets/4bbf0758-f4a8-4379-9e12-7d2064d010f2" />
 
-
 Built with React 19, TypeScript (strict), Vite and Tailwind CSS v4.
 
 ## Getting started
@@ -19,7 +18,7 @@ npm run dev        # http://localhost:3000
 | Script              | What it does                         |
 | ------------------- | ------------------------------------ |
 | `npm run dev`       | Start the dev server                 |
-| `npm run build`     | Type-check, then build to `dist/`    |
+| `npm run build`     | Type-check, build, and prerender the page into `dist/` |
 | `npm run preview`   | Serve the production build locally   |
 | `npm run typecheck` | Type-check only                      |
 | `npm run clean`     | Delete `dist/`                       |
@@ -31,12 +30,13 @@ public/                     Static files served as-is at the site root
 ├── favicon.png             Browser tab icon
 └── og-image.png            Link-preview image, 1200×630
 
-vite-plugins/seo.ts         Build-time SEO: prerenders commands into index.html and
-                            generates robots.txt, sitemap.xml and llms.txt from the data
+vite-plugins/seo.ts         Fills %SITE_URL% and generates robots.txt, sitemap.xml, llms.txt
+scripts/prerender.js        Injects the server-rendered app into dist/index.html
 
 src/
 ├── App.tsx                 Composes the page; holds no business logic
 ├── main.tsx                Entry point
+├── entry-server.tsx        Renders the app to HTML at build time (prerender)
 ├── types/command.ts        Domain types (GitCommand, CommandSnippet, …)
 ├── data/commands.ts        The command content
 ├── config/commandFilters.ts  Category labels + filter buttons (config-driven)
