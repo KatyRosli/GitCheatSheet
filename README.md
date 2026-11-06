@@ -1,6 +1,6 @@
 # Git Cheat Sheet
 
-A searchable Git command reference with copy-ready snippets, flags and cautions, grouped into **Actions**, **Inspect**, **Utilities** and **Undo & Recovery**.
+A searchable Git command reference with copy-ready snippets, flags and cautions, grouped into **Actions**, **Inspect**, **Utilities** and **Undo & Recovery**. Visit website here: https://git-cheat-sheet-two.vercel.app/ .
 
 Built with React 19, TypeScript (strict), Vite and Tailwind CSS v4.
 
@@ -28,7 +28,7 @@ public/                     Static files served as-is at the site root
 ├── favicon.png             Browser tab icon
 └── og-image.png            Link-preview image, 1200×630
 
-build/seo.ts                Build-time SEO: prerenders commands into index.html and
+vite-plugins/seo.ts         Build-time SEO: prerenders commands into index.html and
                             generates robots.txt, sitemap.xml and llms.txt from the data
 
 src/
@@ -56,15 +56,4 @@ src/
 
 Dependencies point one way: `components → hooks → lib → config / data → types`.
 
-## Common changes
-
-**Add a command:** add an entry to `GIT_COMMANDS` in `src/data/commands.ts`. Give it the next `number`, and make sure every id in `seeAlso` exists.
-
-**Add or rename a category:** update `CommandCategory` in `src/types/command.ts` and `CATEGORY_LABELS` in `src/config/commandFilters.ts`. Card labels, filter buttons and header counts update from there.
-
-**Add a filter button:** add an entry to `COMMAND_FILTERS` in `src/config/commandFilters.ts`. No component changes are needed.
-
-**Change the live URL:** update `SITE_URL` in `vite.config.ts`. It fills the link-preview, canonical, structured-data and sitemap URLs.
-
-**Change colours:** edit the CSS variables at the top of `src/styles/globals.css`. Dark is the default; `html.light` overrides it.
 # GitCheatSheet
