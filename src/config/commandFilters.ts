@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react';
 import { AlertTriangle, Bookmark } from 'lucide-react';
-import type { CommandCategory, GitCommand } from '../types/command';
+import type { CommandCategory, GitCommand } from '../types/command.ts';
 
 /** Display name for each category, shared by filter buttons and card labels. */
 export const CATEGORY_LABELS: Record<CommandCategory, string> = {

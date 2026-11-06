@@ -112,6 +112,9 @@ export function CommandCard({
           </div>
         </header>
 
+        {/* Plain-language summary: what the command does, in the words people search for */}
+        <p className="font-serif text-[11pt] leading-relaxed text-[var(--ink)] mb-2">{command.summary}</p>
+
         <p className="font-serif italic text-[11pt] text-[var(--muted)] mb-3 border-b border-[var(--border-inner)] pb-2.5">
           {command.etymology}
         </p>

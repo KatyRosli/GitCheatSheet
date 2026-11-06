@@ -1,4 +1,4 @@
-import type { GitCommand } from '../types/command';
+import type { GitCommand } from '../types/command.ts';
 
 /** Every command shown on the cheat sheet, in display order. */
 export const GIT_COMMANDS: GitCommand[] = [
@@ -9,7 +9,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '01',
     etymology: 'From Latin initium (“beginning, entrance, fundamental principle”), inire (“to go into”).',
-    summary: 'To consecrate an unmanaged directory into a versioned object depository.',
+    summary: 'Create a new Git repository in the current folder, or start version control on an existing project.',
     description: 'The ritual invocation by which an ordinary filing system is endowed with a hidden sanctuary (.git), establishing the Object Database, the Reference Registry (refs/heads), and the architectural configuration parchment.',
     snippets: [
       {
@@ -53,7 +53,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '02',
     etymology: 'From Ancient Greek κλών (klṓn, “twig, slip used for propagation”).',
-    summary: 'To transcribe an entire genealogical lineage from a remote harbor into a local codex.',
+    summary: 'Download a copy of a remote repository (from GitHub, GitLab, Bitbucket) to your computer, including its full history.',
     description: 'Duplicates not merely the present surface state of a repository, but the entire unbroken ancestral chain of commits, tags, and tree manifests since the first recorded epoch.',
     snippets: [
       {
@@ -101,7 +101,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'inspect',
     number: '03',
     etymology: 'From Latin status (“standing, position, posture, condition of being”).',
-    summary: 'A comprehensive audit comparing the working desk, the staging palimpsest, and the HEAD commit.',
+    summary: 'See which files are changed, staged, or untracked, and which branch you are on.',
     description: 'The diagnostic survey that reveals modifications untracked, amendments staged for immortality, and divergences between the scribe’s immediate folio and the remote beacon.',
     snippets: [
       {
@@ -134,7 +134,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'utility',
     number: '04',
     etymology: 'From Latin configurare (“to fashion, shape, form symmetrically”).',
-    summary: 'The codification of scribe identities, cryptographic seals, and environmental defaults.',
+    summary: 'Set your Git username and email, default branch name, editor, and aliases, globally or per repository.',
     description: 'Maintains three distinct layers of institutional policy: system-wide (/etc/gitconfig), personal scribe level (~/.gitconfig), and local repository charter (.git/config).',
     snippets: [
       {
@@ -171,7 +171,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '05',
     etymology: 'From Latin addere (“to put to, join, attach, augment”).',
-    summary: 'To transcribe modifications onto the staging palimpsest (the Index).',
+    summary: 'Stage changed files for the next commit: add one file, a folder, or all changes at once.',
     description: 'Git separates the scribe’s working scratchpad from the permanent historical record via the Index. Invoking add computes the SHA-1/256 hash of the modified content, casts it as an immutable blob in .git/objects, and updates the index register.',
     snippets: [
       {
@@ -215,7 +215,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '06',
     etymology: 'From Latin committo (“to join together, connect, entrust, perpetrate”).',
-    summary: 'To solidify the staged index into an immutable, cryptographically sealed epoch node.',
+    summary: 'Save your staged changes to history with a commit message. Also used to amend (edit) the last commit.',
     description: 'Creates a tree object reflecting the staged directory structure and a commit object bearing the author attribution, committer signature, timestamp, log message, and pointer to its parent commit.',
     snippets: [
       {
@@ -265,7 +265,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '07',
     etymology: 'From Latin restaurare (“to rebuild, renew, reinstate, repair”).',
-    summary: 'To roll back uncommitted modifications in the working chamber or unstage from the index.',
+    summary: 'Discard local changes to a file, or unstage a file you added by mistake, without touching commits.',
     description: 'Introduced in modern Git dispensations to separate file checkout responsibilities from branch switching rituals, restore cleanly returns parchments to their clean index or HEAD condition.',
     snippets: [
       {
@@ -307,7 +307,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '08',
     etymology: 'From Old French remouvoir, Latin removere (“to move back, remove, take away”).',
-    summary: 'To expunge a parchment from the index and the working chamber simultaneously.',
+    summary: 'Delete a file from the repository and stage the removal, or stop tracking a file but keep it on disk.',
     description: 'Registers a deletion event in the index while deleting the physical file from the disk, preparing a commit that formally terminates the file’s tenure in the active lineage.',
     snippets: [
       {
@@ -345,7 +345,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '09',
     etymology: 'From Middle English tagge (“a small hanging piece, a label attached to something”).',
-    summary: 'Put a permanent, human-readable label on a specific commit — usually a release version.',
+    summary: 'Mark a specific commit with a version label such as v1.0.0, list tags, push tags, or delete a tag.',
     description: 'Unlike a branch, a tag never moves. Lightweight tags are just a name pointing at a commit; annotated tags (-a) are full objects that store the tagger, date, and a message, and can be GPG-signed. Use annotated tags for releases.',
     snippets: [
       {
@@ -405,7 +405,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '10',
     etymology: 'From Old English clǣne (“free from dirt, pure”).',
-    summary: 'Delete untracked files (and optionally folders and ignored files) from the working directory.',
+    summary: 'Remove untracked files and folders from your working directory, with a dry run to preview first.',
     description: 'Removes files Git is not tracking — build output, stray logs, generated files. Because untracked files were never committed, Git has no copy of them: once cleaned, they are gone for good. Always preview with -n first.',
     snippets: [
       {
@@ -460,7 +460,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'inspect',
     number: '11',
     etymology: 'From Old French branche, Late Latin branca (“paw, footprint, limb of tree”).',
-    summary: 'A lightweight, movable bookmark pointing directly to a specific commit node.',
+    summary: 'List, create, rename, or delete branches, including deleting local branches that are already merged.',
     description: 'In Git, a branch is not a duplicated folder of files; it is merely a 41-byte text file inside .git/refs/heads containing the 40-character hexadecimal SHA of its leading commit.',
     snippets: [
       {
@@ -510,7 +510,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '12',
     etymology: 'From Middle Low German swichten (“to calm, pacify, change direction swiftly”).',
-    summary: 'To shift the monastic consciousness (HEAD) from one branch reality to another.',
+    summary: 'Change to another branch, or create a new branch and switch to it in one step.',
     description: 'Replaces the contents of the working chamber and index to reflect the state of the designated branch, redirecting the symbolic ref .git/HEAD.',
     snippets: [
       {
@@ -556,7 +556,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '13',
     etymology: 'From Latin mergere (“to plunge into, immerse, dip, combine into a unified stream”).',
-    summary: 'To join two diverging streams of history into a single unified confluence.',
+    summary: 'Combine another branch into your current branch, and resolve merge conflicts when they happen.',
     description: 'Calculates the Best Common Ancestor of the active and target branches, synthesizes the delta, and unless executed as a fast-forward, fashions an illuminated Merge Commit possessing two distinct parent lineages.',
     snippets: [
       {
@@ -607,7 +607,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '14',
     etymology: 'Compound of Latin re- (“again, back”) + basis (“foundation, foot, pedestal”).',
-    summary: 'To transplant the root genealogy of a branch onto an alternative ancestral lineage.',
+    summary: 'Move your commits on top of another branch for a linear history; squash or edit commits with interactive rebase.',
     description: 'Rebase takes commits unique to the current branch, creates temporary diff patches, resets the branch pointer to the new base upstream commit, and replays each patch sequentially, forging entirely new commits with updated parentage.',
     snippets: [
       {
@@ -657,7 +657,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '15',
     etymology: 'From check + out, as in borrowing a book from a library.',
-    summary: 'The older all-in-one command to switch branches, inspect old commits, or restore files.',
+    summary: 'Older command to switch branches, create a branch, view an old commit, or discard file changes.',
     description: 'Before Git 2.23, checkout did two unrelated jobs: moving between branches and overwriting files. Those were split into `git switch` (branches) and `git restore` (files). You will still see checkout everywhere in tutorials, scripts and Stack Overflow answers, so it is worth recognising.',
     snippets: [
       {
@@ -719,7 +719,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '16',
     etymology: 'Idiomatic: to select the choicest fruits while leaving the rest upon the orchard branch.',
-    summary: 'To extract the exact delta of an isolated past commit and replay it onto the current branch.',
+    summary: 'Copy a single commit from another branch onto your current branch.',
     description: 'Introduces the changes made by one or more existing commits, generating a fresh commit on the currently active branch with an independent hash and timestamp.',
     snippets: [
       {
@@ -756,7 +756,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '17',
     etymology: 'From Latin revertere (“to turn back, come back, return”).',
-    summary: 'To forge a brand new commit that performs the exact cryptographic inversion of a past commit.',
+    summary: 'Undo a commit safely by creating a new commit that reverses it, without rewriting shared history.',
     description: 'The honorable and safe path of undoing history: rather than expunging past blunders from the ledger, revert records an explicit corrective amendment, preserving the integrity of published public records.',
     snippets: [
       {
@@ -792,7 +792,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'recovery',
     number: '18',
     etymology: 'From Middle English resetten, French recépter (“to receive back, set again”).',
-    summary: 'To forcibly reposition the HEAD branch pointer to a designated prior historical epoch.',
+    summary: 'Undo the last commit or move a branch back to an earlier commit, keeping or discarding your changes (soft, mixed, hard).',
     description: 'Possesses three ascending degrees of severity: --soft (moves HEAD only), --mixed (moves HEAD and resets the index), and --hard (moves HEAD, resets index, and obliterates working desk modifications).',
     snippets: [
       {
@@ -844,7 +844,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'inspect',
     number: '19',
     etymology: 'From Old Norse lág (“felled tree trunk, ship’s logbook recording nautical progress”).',
-    summary: 'The illuminated chronological chronicle of ancestral commits.',
+    summary: 'View commit history: one-line log, branch graph, filter by author or date, or see the history of a file.',
     description: 'Traverses the directed acyclic graph (DAG) backward from the current HEAD node, deciphering commit messages, author signatures, dates, and topological connections.',
     snippets: [
       {
@@ -891,7 +891,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'utility',
     number: '20',
     etymology: 'From Latin differre (“to carry apart, put off, defer, differ, disagree”).',
-    summary: 'A microscopic comparative collation of textual variations across two trees, index, or disks.',
+    summary: 'Show what changed between your working files, staged changes, commits, or branches.',
     description: 'Calculates the minimal edit distance (using Myers or Histogram algorithms) between two distinct states of the repository parchment, displaying additions in ink and deletions in vermilion.',
     snippets: [
       {
@@ -934,7 +934,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'inspect',
     number: '21',
     etymology: 'From Old French blasmer, Greek βλασφημεῖν (blasphēmeîn, “to speak ill of, blaspheme”).',
-    summary: 'Annotates every line of a parchment with the scribe identity and commit SHA of its origin.',
+    summary: 'See who last changed each line of a file, and in which commit.',
     description: 'While colloquial developers refer to it as "blame", historical purists often evoke its synonym `git annotate`. It serves as the ultimate provenance ledger for intellectual attribution.',
     snippets: [
       {
@@ -974,7 +974,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'inspect',
     number: '22',
     etymology: 'From Old English scēawian (“to look at, behold, examine”).',
-    summary: 'Display a single commit (message plus diff), a tag, or a file as it was at any point in history.',
+    summary: 'Show the details and changes of a single commit or tag, or view a file as it was in an older commit.',
     description: 'Where `git log` lists many commits, `git show` zooms in on one object. With no arguments it shows the latest commit. With `<commit>:<path>` it prints the full contents of a file at that commit, without checking anything out.',
     snippets: [
       {
@@ -1029,7 +1029,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'utility',
     number: '23',
     etymology: 'From Latin bi- (“two”) + secare (“to cut”): to cut in two.',
-    summary: 'Find the exact commit that introduced a bug using a binary search through history.',
+    summary: 'Find which commit introduced a bug by binary-searching through history, manually or with an automated test.',
     description: 'You mark one commit as good (bug absent) and one as bad (bug present). Git checks out the midpoint; you test and answer good or bad; Git halves the range again. Even across 1,000 commits it takes only about 10 steps to pinpoint the culprit.',
     snippets: [
       {
@@ -1084,7 +1084,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '24',
     etymology: 'From Old English feccan (“to reach, gain, seek, take, retrieve”).',
-    summary: 'To retrieve remote objects and references without perturbing local working manuscripts.',
+    summary: 'Download new commits and branches from the remote without changing your local files.',
     description: 'The prudent and scholarly way to inspect distant developments: fetches all new commit objects from a designated remote harbor and updates remote-tracking references (e.g. origin/main) safely in the background.',
     snippets: [
       {
@@ -1119,7 +1119,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '25',
     etymology: 'From Old English pullian (“to draw with force, pluck, tug”).',
-    summary: 'An aggregate ritual: executes `git fetch` followed immediately by `git merge` or `rebase`.',
+    summary: 'Update your current branch with changes from the remote: fetch, then merge or rebase.',
     description: 'Brings your active local branch into parity with its upstream tracking counterpart by fetching remote updates and immediately integrating them into your current working lineage.',
     snippets: [
       {
@@ -1156,7 +1156,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'action',
     number: '26',
     etymology: 'From Old French pousser, Latin pulsare (“to push, strike, beat, propel forward”).',
-    summary: 'To transmit local commits and update remote branch references in the central harbor.',
+    summary: 'Upload your local commits to the remote repository, set the upstream branch, or force push safely.',
     description: 'Uploads newly consecrated commit objects, trees, and blobs to the remote depository and requests that the remote reference pointer be advanced to your new local SHA.',
     snippets: [
       {
@@ -1206,7 +1206,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'utility',
     number: '27',
     etymology: 'From Latin remotus (“distant, far off”), past participle of removere.',
-    summary: 'List, add, rename or remove the remote repositories (like origin) your local repo talks to.',
+    summary: 'Show, add, rename, or remove remote repositories such as origin and upstream, and change a remote URL.',
     description: 'A remote is just a short name for a URL. `git clone` creates one called origin automatically. Forks typically add a second remote called upstream pointing at the original project, so you can pull its changes into your fork.',
     snippets: [
       {
@@ -1264,7 +1264,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'recovery',
     number: '28',
     etymology: 'Portmanteau of Reference + Log: the chronicle of reference movements.',
-    summary: 'The private subterranean ledger that records every movement of HEAD and branch tips.',
+    summary: 'Recover lost commits or deleted branches, and undo a bad reset or rebase, using the log of where HEAD has been.',
     description: 'When all seems lost—after a catastrophic `reset --hard`, a botched rebase, or an accidental branch deletion—the Reflog remains your immortal salvation. It records every moment HEAD changed location locally, even if commits were severed from branch tips.',
     snippets: [
       {
@@ -1306,7 +1306,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'utility',
     number: '29',
     etymology: 'Colloquial English stash (“to store something safely in a concealed repository”).',
-    summary: 'Temporarily squirrel away dirty working tree state onto a stack without committing.',
+    summary: 'Temporarily save uncommitted changes so you can switch branches, then bring them back later.',
     description: 'Captures the unfinished drafts from your working desk and index, records them as special commit objects under refs/stash, and restores your working tree to pristine HEAD tranquility.',
     snippets: [
       {
@@ -1349,7 +1349,7 @@ export const GIT_COMMANDS: GitCommand[] = [
     category: 'utility',
     number: '30',
     etymology: 'File System Consistency Check: UNIX ritual of forensic integrity verification.',
-    summary: 'Verifies the cryptographic and structural integrity of the object database.',
+    summary: 'Check the repository for corruption, and find dangling or lost commits that can still be recovered.',
     description: 'Audits every blob, tree, commit, and tag object in .git/objects, detecting corrupted checksums, broken pointers, and locating dangling objects unlinked to any named branch.',
     snippets: [
       {
